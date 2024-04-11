@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Categories(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название')
@@ -36,3 +37,7 @@ class Products(models.Model):
     
     def sell_price(self):
         return round(self.price * (1 - self.discount / 100), 2)
+    
+    def get_absolute_url(self):
+        return reverse("goods:product", kwargs={"product_slug": self.slug})
+    
