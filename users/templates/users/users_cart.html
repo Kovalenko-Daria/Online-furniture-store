@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% load carts_tags %}
+
+{% user_carts request as carts %}
+
 {% block content %}
 <div class="row">
     <div class="container mt-5">
@@ -10,6 +14,7 @@
                 <div class="container" id="cart-items-container">
                     <!-- Разметка корзины -->
                     {% include "carts/includes/included_cart.html" %}
+                    {{carts}}
                     <!-- Закончилась разметка корзины -->
                 </div>
                 {% if carts %}
