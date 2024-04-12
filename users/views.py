@@ -69,7 +69,7 @@ def profile(request):
         form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, f"{user.username}, Профиль успешно обновлен")
+            messages.success(request, f"{request.user.username}, Профиль успешно обновлен")
             user = form.instance
             auth.login(request, user)
             return HttpResponseRedirect(reverse('user:profile'))
